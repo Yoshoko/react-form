@@ -13,6 +13,7 @@ const Form = () => {
   });
   const [errors, setErrors] = useState({});
   const [isFormValid, setIsFormValid] = useState(false);
+  const [successMessage, setSuccessMessage] = useState("");
   const [submittedData, setSubmittedData] = useState(null);
 
   const handleChange = (e) => {
@@ -79,22 +80,34 @@ const Form = () => {
   };
 
   const handleSubmit = (e) => {
-    e.preventDefault();
-    if (!isFormValid) return;
+  e.preventDefault();
 
-    const username = formData.email.split("@")[0];
+  if (!isFormValid) return;
 
-    const formattedData = {
-      name: formData.name,
-      email: formData.email,
-      profileImage: formData.profileUrl || "https://via.placeholder.com/100",
-      username: username,
-    };
+  const username = formData.email.split("@")[0];
 
-    setSubmittedData(formattedData);
+  const formattedData = {
+    name: formData.name,
+    email: formData.email,
+    profileImage: formData.profileUrl || "https://placehold.co/200x200",
+    username: username,
+    termsAccepted: formData.terms,
+    submittedAt: new Date().toISOString(),
   };
 
+  console.log("Données soumises :", formattedData);
+  setSubmittedData(formattedData);
+  setSuccessMessage("Inscription réussie ! ✅");
+
+    setTimeout(() => {
+      setSuccessMessage("");
+    }, 3000);
+};
+
+
   return (
+    <>
+    {successMessage && <p className="success-message">{successMessage}</p>}    
     <div className="container">
       {submittedData && <ProfileCard {...submittedData} />}
 
@@ -175,6 +188,7 @@ const Form = () => {
         </button>
       </form>
     </div>
+    </>
   );
 };
 

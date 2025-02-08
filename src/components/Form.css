@@ -64,13 +64,18 @@ button:disabled {
 }
 
 .success-message {
-    margin-top: 15px;
-    padding: 10px;
-    background: #d4edda;
-    color: #155724;
-    border: 1px solid #c3e6cb;
-    border-radius: 5px;
     text-align: center;
+    color: #28a745;
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin-bottom: 20px;
+    background: #d4edda;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #c3e6cb;
+    width: 80%;
+    margin: 20px auto;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 .error-message {
